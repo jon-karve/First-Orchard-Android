@@ -14,6 +14,9 @@
         <action
             android:id="@+id/action_GameFirstFragment_to_GameSecondFragment"
             app:destination="@id/GameSecondFragment" />
+        <action
+            android:id="@+id/action_GameFirstFragment_to_GameThirdFragment"
+            app:destination="@id/GameThirdFragment" />
     </fragment>
     <fragment
         android:id="@+id/GameSecondFragment"
@@ -23,6 +26,15 @@
 
         <action
             android:id="@+id/action_GameSecondFragment_to_GameFirstFragment"
+            app:destination="@id/GameFirstFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/GameThirdFragment"
+        android:name="com.baub.firstorchard.game.GameThirdFragment"
+        android:label="fragment_third_game"
+        tools:layout="@layout/fragment_third_game" >
+        <action
+            android:id="@+id/action_GameThirdFragment_to_GameFirstFragment"
             app:destination="@id/GameFirstFragment" />
     </fragment>
 </navigation>

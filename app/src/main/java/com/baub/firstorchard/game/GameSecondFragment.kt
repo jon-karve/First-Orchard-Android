@@ -33,7 +33,7 @@ class GameSecondFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.buttonSecond.setOnClickListener {
+        binding.buttonRetry.setOnClickListener {
             findNavController().navigate(R.id.action_GameSecondFragment_to_GameFirstFragment)
         }
     }
