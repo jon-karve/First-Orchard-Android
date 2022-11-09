@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/GameFirstFragment"
-        android:name="com.example.firstorchard.game.GameFirstFragment"
+        android:name="com.baub.firstorchard.game.GameFirstFragment"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/fragment_first_game">
 
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/GameSecondFragment"
-        android:name="com.example.firstorchard.game.GameSecondFragment"
+        android:name="com.baub.firstorchard.game.GameSecondFragment"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_second_game">
 

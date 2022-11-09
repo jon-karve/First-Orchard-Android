@@ -1,4 +1,4 @@
-package com.example.firstorchard.game
+package com.baub.firstorchard.game
 
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar

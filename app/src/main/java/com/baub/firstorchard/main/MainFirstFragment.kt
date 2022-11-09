@@ -1,4 +1,4 @@
-package com.example.firstorchard.game
+package com.baub.firstorchard.main
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,15 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.firstorchard.R
-import com.example.firstorchard.databinding.FragmentFirstGameBinding
+import com.example.firstorchard.databinding.FragmentFirstMainBinding
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
-class GameFirstFragment : Fragment() {
+class MainFirstFragment : Fragment() {
 
-    private var _binding: FragmentFirstGameBinding? = null
-
+private var _binding: FragmentFirstMainBinding? = null
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
@@ -25,20 +24,20 @@ class GameFirstFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        _binding = FragmentFirstGameBinding.inflate(inflater, container, false)
-        return binding.root
+      _binding = FragmentFirstMainBinding.inflate(inflater, container, false)
+      return binding.root
 
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.gameButton.setOnClickListener {
-            findNavController().navigate(R.id.action_GameFirstFragment_to_GameSecondFragment)
+        binding.menuButton.setOnClickListener {
+            findNavController().navigate(R.id.action_MainFirstFragment_to_MainSecondFragment)
         }
     }
 
-    override fun onDestroyView() {
+override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }

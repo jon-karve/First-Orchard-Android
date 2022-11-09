@@ -1,4 +1,4 @@
-package com.example.firstorchard
+package com.baub.firstorchard
 
 import org.junit.Test
 

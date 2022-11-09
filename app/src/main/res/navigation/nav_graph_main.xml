@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/FirstFragmentMain"
-        android:name="com.example.firstorchard.main.MainFirstFragment"
+        android:name="com.baub.firstorchard.main.MainFirstFragment"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/fragment_first_main" >
 
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/SecondFragmentMain"
-        android:name="com.example.firstorchard.main.MainSecondFragment"
+        android:name="com.baub.firstorchard.main.MainSecondFragment"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_second_main" >
 
