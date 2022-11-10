@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import com.example.firstorchard.R
 import com.example.firstorchard.R.id.action_GameFirstFragment_to_GameSecondFragment
@@ -27,6 +28,11 @@ class GameFirstFragment : Fragment() {
     var diceValues = arrayOf("Red","Green","Blue","Yellow","Basket","Raven")
     var diceRoll:    Int = 0
 
+    var blueTreeImgs = arrayOf(R.drawable.blue_0,R.drawable.blue_1,R.drawable.blue_2,R.drawable.blue_3, R.drawable.blue_4)
+    var greenTreeImgs = arrayOf(R.drawable.green_0,R.drawable.green_1,R.drawable.green_2,R.drawable.green_3, R.drawable.green_4)
+    var yellowTreeImgs = arrayOf(R.drawable.yellow_0,R.drawable.yellow_1,R.drawable.yellow_2,R.drawable.yellow_3, R.drawable.yellow_4)
+    var redTreeImgs = arrayOf(R.drawable.red_0,R.drawable.red_1,R.drawable.red_2,R.drawable.red_3, R.drawable.red_4)
+
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
@@ -46,32 +52,43 @@ class GameFirstFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.redTreeButton.setOnClickListener {
-            if( (redTotal > 0) && (diceText.equals("Red") || diceText.equals("Basket")) ) {
-                redTotal--
-                binding.redTotalText.setText("Red Total: " + redTotal.toString())
+            if( (diceText.equals("Red") || diceText.equals("Basket")) ) {
+                if(redTotal > 0) {
+                    redTotal--
+                    binding.redTreeButton.setImageDrawable(ContextCompat.getDrawable(requireContext(), redTreeImgs[redTotal]))
+                }
+                updateTotals()
             }
-            updateTotals()
         }
+
         binding.greenTreeButton.setOnClickListener {
-            if( (greenTotal > 0) && (diceText.equals("Green") || diceText.equals("Basket"))) {
-                greenTotal--
-                binding.greenTotalText.setText("Green Total: " + greenTotal.toString())
+            if( (diceText.equals("Green") || diceText.equals("Basket")) ) {
+                if(greenTotal > 0) {
+                    greenTotal--
+                    binding.greenTreeButton.setImageDrawable(ContextCompat.getDrawable(requireContext(), greenTreeImgs[greenTotal]))
+                }
+                updateTotals()
             }
-            updateTotals()
         }
-        binding.blueTreeButton.setOnClickListener {
-            if( (blueTotal > 0) && (diceText.equals("Blue")  || diceText.equals("Basket"))) {
-                blueTotal--
-                binding.blueTotalText.setText("Blue Total: " + blueTotal.toString())
+
+        val onClickListener = binding.blueTreeButton.setOnClickListener {
+            if ((diceText.equals("Blue") || diceText.equals("Basket"))) {
+                if (blueTotal > 0) {
+                    blueTotal--
+                    binding.blueTreeButton.setImageDrawable(ContextCompat.getDrawable(requireContext(), blueTreeImgs[blueTotal]))
+                }
+                updateTotals()
             }
-            updateTotals()
         }
+
         binding.yellowTreeButton.setOnClickListener {
-            if( (yellowTotal > 0) && (diceText.equals("Yellow") || diceText.equals("Basket"))) {
-                yellowTotal--
-                binding.yellowTotalText.setText("Yellow Total: " + yellowTotal.toString())
+            if( (diceText.equals("Yellow") || diceText.equals("Basket")) ) {
+                if(yellowTotal > 0) {
+                    yellowTotal--
+                    binding.yellowTreeButton.setImageDrawable(ContextCompat.getDrawable(requireContext(), yellowTreeImgs[yellowTotal]))
+                }
+                updateTotals()
             }
-            updateTotals()
         }
 
         binding.diceButton.setOnClickListener {
@@ -95,6 +112,7 @@ class GameFirstFragment : Fragment() {
             }//end check for outstanding turn
         }//end dice button click
     }
+
     fun updateTotals(){
         binding.basketValueText.setText("R:"+(4-redTotal)+" G:"+(4-greenTotal)+" B:"+(4-blueTotal)+" Y:"+(4-yellowTotal))
         binding.diceValueText.setText("")

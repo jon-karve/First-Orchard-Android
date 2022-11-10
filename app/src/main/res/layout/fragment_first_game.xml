@@ -6,111 +6,57 @@
     android:layout_height="match_parent"
     tools:context="com.baub.firstorchard.game.GameFirstFragment">
 
-    <Button
-        android:id="@+id/gameButton"
-        android:layout_width="53dp"
-        android:layout_height="29dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="Button"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <Button
-        android:id="@+id/redTreeButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="240dp"
-        android:text="Red"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/redTotalText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="48dp"
-        android:text="Red Total: 4"
-        android:textSize="34sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/redTreeButton" />
-
-    <Button
+    <ImageButton
         android:id="@+id/blueTreeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="152dp"
+        android:layout_marginStart="132dp"
         android:layout_marginTop="36dp"
-        android:text="Blue"
-        android:textSize="24sp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/blue_4"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
 
-    <TextView
-        android:id="@+id/blueTotalText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="108dp"
-        android:layout_marginTop="32dp"
-        android:text="Blue Total: 4"
-        android:textSize="34sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/blueTreeButton" />
-
-    <Button
+    <ImageButton
         android:id="@+id/greenTreeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
-        android:layout_marginEnd="228dp"
-        android:text="Green"
-        android:textSize="24sp"
+        android:layout_marginEnd="108dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/green_4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/greenTotalText"
+    <ImageButton
+        android:id="@+id/redTreeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="176dp"
-        android:text="Green Total: 4"
-        android:textSize="34sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/greenTreeButton" />
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="320dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/red_4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <ImageButton
         android:id="@+id/yellowTreeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="240dp"
-        android:layout_marginEnd="160dp"
-        android:text="Yellow"
-        android:textSize="24sp"
+        android:layout_marginTop="320dp"
+        android:layout_marginEnd="44dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/yellow_4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/yellowTotalText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="124dp"
-        android:text="Yellow Total: 4"
-        android:textSize="34sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/yellowTreeButton" />
 
     <Button
         android:id="@+id/diceButton"
         android:layout_width="214dp"
         android:layout_height="137dp"
-        android:layout_marginStart="64dp"
-        android:layout_marginBottom="232dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginBottom="128dp"
         android:text="Roll Dice"
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -131,7 +77,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="76dp"
-        android:layout_marginBottom="292dp"
+        android:layout_marginBottom="220dp"
         android:text="Raven Moves Remaining:"
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -150,14 +96,20 @@
 
     <TextView
         android:id="@+id/basketValueText"
-        android:layout_width="370dp"
-        android:layout_height="266dp"
-        android:layout_marginBottom="416dp"
+        android:layout_width="221dp"
+        android:layout_height="160dp"
+        android:layout_marginBottom="500dp"
         android:text="R:0 G:0 B:0 Y:0"
-        android:textSize="96sp"
+        android:textSize="60sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="9dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
