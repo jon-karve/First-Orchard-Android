@@ -60,6 +60,7 @@
         android:layout_marginBottom="24dp"
         android:text="Roll Dice"
         android:textSize="34sp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -80,6 +81,7 @@
         android:layout_marginBottom="380dp"
         android:text="R:0 G:0 B:0 Y:0"
         android:textSize="60sp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.97"
@@ -155,5 +157,14 @@
         android:src="@drawable/raven_small"
         app:layout_constraintStart_toEndOf="@+id/tileImage1"
         app:layout_constraintTop_toBottomOf="@+id/tileImage2" />
+
+    <ImageView
+        android:id="@+id/diceAnimationView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginBottom="72dp"
+        app:layout_constraintBottom_toTopOf="@+id/diceButton"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,21 +1,28 @@
 package com.baub.firstorchard.game
 
 import android.annotation.SuppressLint
-import android.graphics.Bitmap
-import android.graphics.drawable.Drawable
+import android.graphics.drawable.AnimationDrawable
 import android.media.MediaPlayer
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.os.Handler
+import android.os.Looper
+import android.transition.Visibility
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
-import androidx.annotation.DrawableRes
+import androidx.constraintlayout.widget.ConstraintSet.GONE
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.firstorchard.R
 import com.example.firstorchard.R.id.*
 import com.example.firstorchard.databinding.FragmentFirstGameBinding
+
+
 
 class GameFirstFragment : Fragment() {
 
@@ -31,6 +38,7 @@ class GameFirstFragment : Fragment() {
     //var diceValues = arrayOf("Basket","Basket","Basket","Basket","Basket","Basket")
     var diceRoll:    Int = 0
     val collectedFruit: MutableList<ImageView> = arrayListOf()
+    lateinit var diceAnimation: AnimationDrawable
 
 
     var tileLocations= arrayOfNulls<ImageView>(5)
@@ -38,6 +46,7 @@ class GameFirstFragment : Fragment() {
     var greenTreeImgs = arrayOf(R.drawable.green_0,R.drawable.green_1,R.drawable.green_2,R.drawable.green_3, R.drawable.green_4)
     var yellowTreeImgs = arrayOf(R.drawable.yellow_0,R.drawable.yellow_1,R.drawable.yellow_2,R.drawable.yellow_3, R.drawable.yellow_4)
     var redTreeImgs = arrayOf(R.drawable.red_0,R.drawable.red_1,R.drawable.red_2,R.drawable.red_3, R.drawable.red_4)
+    var diceImages = arrayOf(R.drawable.dice_red,R.drawable.dice_green,R.drawable.dice_blue,R.drawable.dice_yellow,R.drawable.dice_basket,R.drawable.dice_raven)
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -49,6 +58,7 @@ class GameFirstFragment : Fragment() {
     ): View? {
 
         _binding = FragmentFirstGameBinding.inflate(inflater, container, false)
+
         return binding.root
 
     }
@@ -62,72 +72,94 @@ class GameFirstFragment : Fragment() {
         tileLocations[3] = binding.tileImage4
         tileLocations[4] = binding.tileImage5
 
+        binding.diceAnimationView.setBackgroundResource(R.drawable.diceanimation)
+        diceAnimation = binding.diceAnimationView.background as AnimationDrawable
 
-        binding.redTreeButton.setOnClickListener {
-            if( (diceText.equals("Red") || diceText.equals("Basket")) ) {
-                if(redTotal > 0) {
-                    redTotal--
-                    binding.redTreeButton.setImageDrawable(ContextCompat.getDrawable(requireContext(), redTreeImgs[redTotal]))
-                    addToBasket(R.drawable.red_apple)
-                }
+
+            binding.redTreeButton.setOnClickListener {
+            if( (diceText.equals("Red") || diceText.equals("Basket")) && (redTotal > 0) ) {
+                redTotal--
+                binding.redTreeButton.setImageDrawable(ContextCompat.getDrawable(requireContext(), redTreeImgs[redTotal]))
+                addToBasket(R.drawable.red_apple)
                 clearDice()
             }
         }
 
         binding.greenTreeButton.setOnClickListener {
-            if( (diceText.equals("Green") || diceText.equals("Basket")) ) {
-                if(greenTotal > 0) {
-                    greenTotal--
-                    binding.greenTreeButton.setImageDrawable(ContextCompat.getDrawable(requireContext(), greenTreeImgs[greenTotal]))
-                    addToBasket(R.drawable.green_apple)
-                }
+            if( (diceText.equals("Green") || diceText.equals("Basket")) && (greenTotal > 0) ) {
+                greenTotal--
+                binding.greenTreeButton.setImageDrawable(ContextCompat.getDrawable(requireContext(), greenTreeImgs[greenTotal]))
+                addToBasket(R.drawable.green_apple)
                 clearDice()
             }
         }
 
         binding.blueTreeButton.setOnClickListener {
-            if ((diceText.equals("Blue") || diceText.equals("Basket"))) {
-                if (blueTotal > 0) {
-                    blueTotal--
-                    binding.blueTreeButton.setImageDrawable(ContextCompat.getDrawable(requireContext(), blueTreeImgs[blueTotal]))
-                    addToBasket(R.drawable.blueplum)
-                }
+            if ((diceText.equals("Blue") || diceText.equals("Basket")) && (blueTotal > 0)  ) {
+                blueTotal--
+                binding.blueTreeButton.setImageDrawable(ContextCompat.getDrawable(requireContext(), blueTreeImgs[blueTotal]))
+                addToBasket(R.drawable.blueplum)
                 clearDice()
             }
         }
 
         binding.yellowTreeButton.setOnClickListener {
-            if( (diceText.equals("Yellow") || diceText.equals("Basket")) ) {
-                if(yellowTotal > 0) {
-                    yellowTotal--
-                    binding.yellowTreeButton.setImageDrawable(ContextCompat.getDrawable(requireContext(), yellowTreeImgs[yellowTotal]))
-                    addToBasket(R.drawable.yellow_pear)
-                }
+            if( (diceText.equals("Yellow") || diceText.equals("Basket")) && (yellowTotal > 0) ) {
+                yellowTotal--
+                binding.yellowTreeButton.setImageDrawable(ContextCompat.getDrawable(requireContext(), yellowTreeImgs[yellowTotal]))
+                addToBasket(R.drawable.yellow_pear)
                 clearDice()
             }
         }
 
-        binding.diceButton.setOnClickListener {
+        binding.diceAnimationView.setOnClickListener {
             if(diceText == ""){
+                binding.diceAnimationView.setImageResource(0)//reset so it can be used for the animation
+                //start animation
                 diceRoll = (0 .. 5).random()
-                binding.diceValueText.setText(diceValues[diceRoll])
-                diceText = binding.diceValueText.text.toString() //reset this to be used in other comparisons
-                if(diceText == "Raven"){
-                    moveRaven() //moves the raven and then decrements the count, to ensure it doesn't move onto a tile until the first move
-                    if(ravenTotal > 0) {
-                        ravenTotal--
-                        //binding.ravenValueText.setText(ravenTotal.toString())
-                        updateTotals()
-                    } else {
-                        //game over
-                        resetBoard()
-                        findNavController().navigate(action_GameFirstFragment_to_GameSecondFragment)
-                    }//end game over
-                } //end raven roll
+                diceAnimation.start()
+
+
+
+                Handler(Looper.getMainLooper()).postDelayed(object : Runnable {
+                    override fun run() {
+                        //end animation after 3 seconds and set everything
+                        diceAnimation.stop()
+                        diceText = diceValues[diceRoll] //reset this to be used in other comparisons
+                        binding.diceAnimationView.setImageResource(diceImages[diceRoll])
+                        if(diceText == "Raven"){
+                            Handler(Looper.getMainLooper()).postDelayed(object : Runnable {
+                                override fun run() {
+                                    moveRaven() //moves the raven and then decrements the count, to ensure it doesn't move onto a tile until the first move
+                                    if(ravenTotal > 0) {
+                                        ravenTotal--
+                                        clearDice()
+                                    } else {
+                                        //game over
+                                        resetBoard()
+                                        findNavController().navigate(action_GameFirstFragment_to_GameSecondFragment)
+                                    }//end game over
+                                }
+                            },2000) //end delay raven move to see the dice
+                        } //end raven roll
+                        checkForEmpty()
+                    }
+                },1000)//end main delay loop
+
+
             }//end check for outstanding turn
         }//end dice button click
     }
 
+    fun checkForEmpty(){
+        var emptyFound: Boolean = false
+        if((redTotal==0 && diceText == "Red") || (blueTotal==0 && diceText == "Blue")
+            || (greenTotal==0 && diceText == "Green") ||  (yellowTotal==0 && diceText == "Yellow"))
+        {
+            diceText = ""
+        }
+
+    }
 
     fun addToBasket(imgId: Int){
         val imageView = ImageView(context)

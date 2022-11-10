@@ -8,27 +8,25 @@
 
     <Button
         android:id="@+id/button_play_again"
-        android:layout_width="334dp"
-        android:layout_height="259dp"
-        android:layout_marginBottom="92dp"
+        android:layout_width="354dp"
+        android:layout_height="182dp"
+        android:layout_marginBottom="16dp"
         android:text="Play again?"
         android:textSize="60sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textview_second2" />
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/textview_second2"
-        android:layout_width="288dp"
-        android:layout_height="103dp"
-        android:layout_marginTop="104dp"
-        android:text="YOU WIN!!"
-        android:textSize="60sp"
-        app:layout_constraintBottom_toTopOf="@id/button_retry"
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="436dp"
+        android:layout_height="445dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="10dp"
+        android:src="@drawable/winner"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.511"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

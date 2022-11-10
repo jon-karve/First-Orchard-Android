@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/dice_raven"
+          android:duration="50"/>
+    <item android:drawable="@drawable/dice_blue"
+        android:duration="50"/>
+    <item android:drawable="@drawable/dice_yellow"
+        android:duration="50"/>
+    <item android:drawable="@drawable/dice_green"
+        android:duration="50"/>
+    <item android:drawable="@drawable/dice_basket"
+        android:duration="50"/>
+    <item android:drawable="@drawable/dice_red"
+        android:duration="50"/>
+</animation-list>

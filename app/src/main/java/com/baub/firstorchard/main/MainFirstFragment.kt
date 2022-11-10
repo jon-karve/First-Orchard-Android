@@ -32,9 +32,9 @@ private var _binding: FragmentFirstMainBinding? = null
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.menuButton.setOnClickListener {
-            findNavController().navigate(R.id.action_MainFirstFragment_to_MainSecondFragment)
-        }
+//        binding.menuButton.setOnClickListener {
+//            findNavController().navigate(R.id.action_MainFirstFragment_to_MainSecondFragment)
+//        }
     }
 
 override fun onDestroyView() {
