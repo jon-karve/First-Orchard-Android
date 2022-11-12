@@ -112,6 +112,9 @@ class GameFirstFragment : Fragment() {
             }
         }
 
+        binding.ravenPieceImage.setOnClickListener {
+            playSound(R.raw.iloveyou)
+        }
         binding.diceAnimationView.setOnClickListener {
             if(diceText == ""){
                 binding.diceAnimationView.setImageResource(0)//reset so it can be used for the animation
@@ -152,7 +155,6 @@ class GameFirstFragment : Fragment() {
     }
 
     fun checkForEmpty(){
-        var emptyFound: Boolean = false
         if((redTotal==0 && diceText == "Red") || (blueTotal==0 && diceText == "Blue")
             || (greenTotal==0 && diceText == "Green") ||  (yellowTotal==0 && diceText == "Yellow"))
         {
