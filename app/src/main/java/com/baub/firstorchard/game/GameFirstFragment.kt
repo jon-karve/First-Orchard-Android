@@ -215,6 +215,11 @@ class GameFirstFragment : Fragment() {
 
         val mediaPlayer = MediaPlayer.create(activity, resId)
         mediaPlayer.start()
+
+        mediaPlayer.setOnCompletionListener{
+                it.release()
+        }
+
     }
     fun resetBoard(){
         redTotal = 4
